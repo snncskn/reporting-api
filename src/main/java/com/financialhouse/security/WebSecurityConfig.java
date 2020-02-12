@@ -1,39 +1,38 @@
 package com.financialhouse.security;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.savedrequest.NullRequestCache;
 
 /**
  * @author Sinan
  */
 @Configuration
-@RequiredArgsConstructor
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
-
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                .anyRequest().fullyAuthenticated().and().formLogin().loginPage("/login").failureUrl("/login?error")
-                .permitAll().and().logout().permitAll();
+    protected void configure(final HttpSecurity http) throws Exception {
+        http.headers()
+                .and().cors().disable().csrf().disable().requestCache().requestCache(new NullRequestCache())
+                .and().httpBasic()
+                .and().logout().invalidateHttpSession(true)
+                .and().authorizeRequests().anyRequest().permitAll()/**TODO : authenticated() */
+                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER);
     }
 
     @Override
-    public void configure(WebSecurity web) {
+    public void configure(final WebSecurity web) {
         web.ignoring().antMatchers("/resources/**");
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
         auth.isConfigured();
     }
 }
