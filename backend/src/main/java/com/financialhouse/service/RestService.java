@@ -13,10 +13,11 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public final class RestService {
 
-    public <T> Object post(String url, Class requestClass, Class responseClass, String authToken) {
+    public <T> Object post(String url, T requestClass, T responseClass, String authToken) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.exchange(url, HttpMethod.POST,
+        Object obj = restTemplate.exchange(url, HttpMethod.POST,
                 new HttpEntity<>(requestClass, HttpUtils.addAuthorization(authToken)), responseClass).getBody();
+        return obj;
     }
 
 }
