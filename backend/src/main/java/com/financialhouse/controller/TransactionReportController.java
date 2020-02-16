@@ -26,7 +26,8 @@ public class TransactionReportController extends BaseController {
     private final TransactionReportService transactionReportService;
 
     @PostMapping
-    public RestResponse<TransactionReportResponse> transactionReport(@RequestBody @Valid final TransactionsReportForm reportForm) {
+    public RestResponse<TransactionReportResponse> transactionReport(
+            @RequestBody @Valid final TransactionsReportForm reportForm) {
         log.info("/api/v3/transactions/report called...");
         return transactionReportService.transactionReport(reportForm).map(this::approved).orElseGet(this::declined);
     }

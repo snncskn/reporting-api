@@ -28,7 +28,6 @@ public class TransactionQueryController extends BaseController {
     @PostMapping
     public RestResponse<TransactionsQueryResponse> transactionQuery(
             @RequestBody @Valid final TransactionsQueryForm reportForm) {
-        
         log.info("/api/v3/transaction/list called...");
         return transactionQueryService.transactionQuery(reportForm).map(this::approved).orElseGet(this::declined);
     }
