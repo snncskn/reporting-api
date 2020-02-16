@@ -1,14 +1,12 @@
 # reporting-api
 for financialhouse.io
 
-
 Tools and Technologies Used
 
-JDK 8
-Spring Boot - 2.2.2.RELEASE
-Lombok - 1.18.12
-Maven
-
+* JDK 8
+* Spring Boot - 2.2.2.RELEASE
+* Lombok - 1.18.12
+* Maven
 
 
 * [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
