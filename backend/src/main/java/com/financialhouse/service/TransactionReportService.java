@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Optional;
 
 @Service
-public class TransactionReportService extends BaseService {
+public class TransactionReportService {
 
     @Value("${transaction.report.url}")
     private String transactionReportUrl;

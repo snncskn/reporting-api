@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class TransactionQueryService extends BaseService {
+public class TransactionQueryService {
 
     @Value("${transaction.query.url}")
     private String transactionQueryUrl;
