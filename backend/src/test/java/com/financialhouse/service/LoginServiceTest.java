@@ -18,7 +18,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class LoginServiceTest {
@@ -29,9 +28,9 @@ public class LoginServiceTest {
     @MockBean
     private RestTemplate template;
 
-
     @Test
     public void whenLoginRequest_LoggedIn() {
+
         ResponseEntity<LoginResponse> responseEntity = new ResponseEntity(
                 new LoginResponse("eyJ0eXAiOiJKV1QiLCJhb", "APPROVED", "qqq@qqq.com"),
                 HttpStatus.OK);
