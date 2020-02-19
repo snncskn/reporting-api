@@ -1,1 +1,32 @@
-﻿<h1>Hi {{currentUser.email}}!</h1>
+﻿<div class="main-content">
+    <div class="container-fluid">
+      <form [formGroup]="form" class="form-horizontal">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                TRANSACTION REPORT
+                </div>
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <td>Quantity transaction</td>
+                            <td>Total amount</td>
+                            <td>Currency</td>
+                        </tr>
+                        <tr *ngFor="let item of list"> 
+                            <td>{{item.count}}</td>
+                            <td>{{item.total}}</td>
+                            <td>{{item.currency}}</td>
+                        </tr>
+
+                    </table>
+                </div>
+              
+            </div>
+          </div>
+        </div>
+       
+      </form>
+    </div>
+  </div>

@@ -66,6 +66,7 @@ export class LoginComponent implements OnInit {
                     this.loading = false;
                     this.currentUserSubject.next(data.data);
                     this.router.navigate([this.returnUrl]);
+                    window.location.reload();
                 },
                 error => {
                     this.alertService.error(error);
