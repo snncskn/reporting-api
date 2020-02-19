@@ -8,11 +8,6 @@ export class UserService {
     constructor(private http: HttpClient) { }
 
     getAll() {
-        return this.http.get<any>(`${config.apiUrl}/transaction/transactionId?1011028-1539357144-1293`)  .subscribe(
-            data => {
-                console.log(data);
-            },
-            error => {
-            });;
+        return this.http.get<any>(`${config.apiUrl}/transaction/transactionId?1011028-1539357144-1293`);
     }
 }

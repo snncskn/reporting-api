@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
     this.currentUser = this.authenticationService.currentUserValue;
     const firtDate = new Date();
     firtDate.setDate(firtDate.getDate() - 30);
+    console.log('homeeeeee.');
 
 
     this.form = formBuilder.group({
@@ -45,7 +46,12 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userService.getAll();
+    this.userService.getAll().subscribe(
+      data => {
+          console.log(data);
+      },
+      error => {
+      });;;
   }
 
 }

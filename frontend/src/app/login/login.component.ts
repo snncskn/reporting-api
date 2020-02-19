@@ -28,15 +28,17 @@ export class LoginComponent implements OnInit {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
         // redirect to home if already logged in
+        console.log('....');
         if (this.authenticationService.currentUserValue) {
-            this.router.navigate(['/']);
+            console.log('.......');
+            this.router.navigate(['home']);
         }
     }
 
     ngOnInit() {
         this.loginForm = this.formBuilder.group({
-            email: ['', Validators.required],
-            password: ['', Validators.required]
+            email: ['demo@financialhouse.io', Validators.required],
+            password: ['cjaiU8CV', Validators.required]
         });
 
         // get return url from route parameters or default to '/'
@@ -63,10 +65,10 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 data => {
                     localStorage.setItem('currentUser', JSON.stringify(data.data));
-                    this.loading = false;
                     this.currentUserSubject.next(data.data);
+                    this.loading = false;
+                    //window.location.reload();
                     this.router.navigate([this.returnUrl]);
-                    window.location.reload();
                 },
                 error => {
                     this.alertService.error(error);
