@@ -51,8 +51,7 @@ import java.util.Date;
  */
 
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class TransactionsQueryForm extends HeaderParameters {
+public class TransactionsQueryForm {
 
     /**
      * Start Date

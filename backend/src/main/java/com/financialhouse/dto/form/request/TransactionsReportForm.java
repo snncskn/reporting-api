@@ -18,8 +18,7 @@ import java.util.Date;
  */
 
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class TransactionsReportForm extends HeaderParameters {
+public class TransactionsReportForm {
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern = "yyyy-MM-dd")

@@ -18,8 +18,9 @@ public class LoginService {
 
     public Optional<LoginResponse> login(final LoginCredentialsForm credentials) {
         RestTemplate restTemplate = new RestTemplate();
-        LoginResponse authToken = restTemplate.exchange(loginUrl, HttpMethod.POST,
+        LoginResponse loginResponse = restTemplate.exchange(loginUrl, HttpMethod.POST,
                 new HttpEntity<>(credentials), LoginResponse.class).getBody();
-        return Optional.of(authToken);
+        loginResponse.setEmail(credentials.getEmail());
+        return Optional.of(loginResponse);
     }
 }

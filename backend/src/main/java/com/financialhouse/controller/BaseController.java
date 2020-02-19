@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @author Sinan
+ *
+ * @apiNote RestResponse with api-success or api-error message with data
  */
 
-public abstract class BaseController {
+abstract class BaseController {
 
     @Autowired
     public RestResponseFactory respFactory;

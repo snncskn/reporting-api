@@ -6,10 +6,7 @@ import com.financialhouse.dto.form.response.LoginResponse;
 import com.financialhouse.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -19,8 +16,9 @@ import javax.validation.Valid;
  */
 
 @Slf4j
+@CrossOrigin
 @RestController
-@RequestMapping("/api/v3/merchant/user/login")
+@RequestMapping("/api")
 @RequiredArgsConstructor
 public class LoginController extends BaseController {
 
@@ -30,11 +28,11 @@ public class LoginController extends BaseController {
      * user/login
      *
      * @param form information from the FE side
-     * @return the RestResponse with status SUCCESS or ERROR and with body the data
+     * @return RestResponse with status SUCCESS or ERROR and with body the data
      */
-    @PostMapping
-    public RestResponse<LoginResponse> login(@RequestBody @Valid final LoginCredentialsForm form) {
-        log.info("api/v3/merchant/user/login called with email {} - password {}", form.getEmail(), form.getPassword());
+    @PostMapping("/login")
+    public RestResponse<LoginResponse> login(@RequestBody @Valid LoginCredentialsForm form) {
+        log.info("api/login called with email {} - password {}", form.getEmail(), form.getPassword());
         return loginService.login(form).map(this::approved).orElseGet(this::declined);
     }
 

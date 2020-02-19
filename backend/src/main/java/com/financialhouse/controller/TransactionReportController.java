@@ -19,7 +19,7 @@ import javax.validation.Valid;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/v3/transactions/report")
+@RequestMapping("/api/report")
 @RequiredArgsConstructor
 public class TransactionReportController extends BaseController {
 
@@ -28,7 +28,7 @@ public class TransactionReportController extends BaseController {
     @PostMapping
     public RestResponse<TransactionReportResponse> transactionReport(
             @RequestBody @Valid final TransactionsReportForm reportForm) {
-        log.info("/api/v3/transactions/report called...");
+        log.info("/api/report called...");
         return transactionReportService.transactionReport(reportForm).map(this::approved).orElseGet(this::declined);
     }
 }

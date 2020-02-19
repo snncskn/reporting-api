@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.client.HttpClientErrorException;
@@ -35,7 +36,6 @@ public class ErrorHandlingControllerAdvice {
 
         final String exceptionMessage = ex.getMessage();
         final String messageText = exceptionMessage != null ? exceptionMessage : "http-server-error";
-        final String code = ex.getStatusCode() == null ? "504a995889df" : ex.getStatusCode().toString();
 
         log.info(ErrorUtils.exceptionToString(ex, request));
 
@@ -109,6 +109,16 @@ public class ErrorHandlingControllerAdvice {
         log.info(ErrorUtils.exceptionToString(ex, request));
 
         return new ResponseEntity<>(resp.error(messageText, ex.getMessage()), HttpStatus.UNAUTHORIZED);
+    }
+
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    ResponseEntity<RestResponse> handleException(final MethodArgumentNotValidException ex,
+                                                 final HttpServletRequest request,
+                                                 final HttpServletResponse response) {
+        response.setContentType("application/json");
+        log.info(ErrorUtils.exceptionToString(ex, request));
+        return new ResponseEntity<>(resp.error("validation-error", ex.getMessage()), HttpStatus.BAD_REQUEST);
     }
 
 }

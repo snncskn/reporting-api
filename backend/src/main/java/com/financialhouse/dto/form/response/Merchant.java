@@ -28,6 +28,11 @@ public class Merchant {
     @JsonProperty("created-at")
     private Date createdAt;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("updated_at")
+    private Date updatedAt;
+
     private String message;
     private String transactionId;
     private Integer id;
@@ -49,5 +54,12 @@ public class Merchant {
     @JsonProperty("IPNUrl")
     private String ipnUrl;
     private String ipnType;
+
+    private Agent agent;
+    private Long acquirerTransactionId;
+    private Long fxTransactionId;
+    private Integer agentInfoId;
+    private Integer merchantId;
+    private String channel;
 
 }
