@@ -16,7 +16,7 @@ import java.util.Collection;
 public final class AuthorizationToken implements Authentication {
     private boolean authenticated;
     private Object credentials;
-    private String details;
+    private String details = new String();
     private String name;
     private Object principal;
     private Collection<? extends GrantedAuthority> authorities;

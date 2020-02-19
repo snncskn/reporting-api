@@ -20,21 +20,22 @@ import javax.validation.constraints.NotNull;
 
 @Slf4j
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/transaction")
 @RequiredArgsConstructor
 public class TransactionController extends BaseController {
 
     private final TransactionService transactionService;
 
     /**
+     * the form of the transactionReport to retrieve
      *
      * @param reportForm
-     * @return
+     * @return RestResponse with status SUCCESS with body the data or ERROR
      */
     @PostMapping(value = {"/report"})
     public RestResponse<TransactionReportResponse> transactionReport(
             @RequestBody @Valid final TransactionsReportForm reportForm) {
-        log.info("api/report called with TransactionsReportForm {}", reportForm.toString());
+        log.info("/api/report called with TransactionsReportForm {}", reportForm.toString());
         return transactionService.transactionReport(reportForm).map(this::approved).orElseGet(this::declined);
     }
 
@@ -42,12 +43,12 @@ public class TransactionController extends BaseController {
      * POST with "TransactionsForm"
      *
      * @param queryForm
-     * @return
+     * @return RestResponse with status SUCCESS with body the data or ERROR
      */
-    @PostMapping(value = {"/transaction/list"})
+    @PostMapping(value = {"/list"})
     public RestResponse<TransactionsQueryResponse> transactionQuery(
             @RequestBody @Valid final TransactionsQueryForm queryForm) {
-        log.info("api/report called with TransactionsReportForm {}", queryForm.toString());
+        log.info("/api/list called with TransactionsQueryForm {}", queryForm.toString());
         return transactionService.transactionQuery(queryForm).map(this::approved).orElseGet(this::declined);
     }
 
@@ -58,9 +59,9 @@ public class TransactionController extends BaseController {
      * @param transactionId
      * @return
      */
-    @GetMapping(value = {"/transaction/{transactionId}"})
+    @GetMapping(value = {"/{transactionId}"})
     public RestResponse<TransactionInfo> getTransaction(@PathVariable @NotNull String transactionId) {
-        log.info("/api/v3/transaction called with Transaction : {}", transactionId);
+        log.info("/api/transaction/{transactionId} called with Transaction : {}", transactionId);
         return transactionService.transactionInfo(transactionId).map(this::approved).orElseGet(this::declined);
     }
 

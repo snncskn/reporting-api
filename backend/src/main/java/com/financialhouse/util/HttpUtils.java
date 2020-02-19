@@ -46,7 +46,7 @@ public class HttpUtils {
      * @return
      */
     public <E> E post(final String url, final HttpEntity httpEntity, final Class<E> responseType) {
-        log.debug("[HttpUtil][POST][Address:{}]", url);
+        log.debug("Post --> {}", url);
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
         HttpComponentsClientHttpRequestFactory rf =
@@ -65,7 +65,7 @@ public class HttpUtils {
      * @return
      */
     public <E> E get(final String url, final Object request, final Class<E> responseType) {
-        log.debug("[HttpUtil][GET][Address:{}]", url);
+        log.debug("Get --> {}", url);
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
         HttpComponentsClientHttpRequestFactory rf =

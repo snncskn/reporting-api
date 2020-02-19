@@ -9,6 +9,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+/**
+ * @author Sinan
+ */
+
 @Service
 @RequiredArgsConstructor
 public class LoginService {
@@ -18,15 +22,9 @@ public class LoginService {
 
     private final HttpUtils httpUtils;
 
-    /**
-     * *
-     *
-     * @param credentials
-     * @return
-     */
-    public Optional<LoginResponse> login(final LoginCredentialsForm credentials) {
-        LoginResponse loginResponse = httpUtils.postForLogin(loginUrl, credentials, LoginResponse.class);
-        loginResponse.setEmail(credentials.getEmail());
+    public Optional<LoginResponse> login(final LoginCredentialsForm form) {
+        LoginResponse loginResponse = httpUtils.postForLogin(loginUrl, form, LoginResponse.class);
+        loginResponse.setEmail(form.getEmail());
         return Optional.of(loginResponse);
     }
 }

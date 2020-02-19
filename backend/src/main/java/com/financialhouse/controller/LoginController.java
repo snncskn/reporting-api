@@ -12,7 +12,6 @@ import javax.validation.Valid;
 
 /**
  * @author Sinan
- * @apiNote Login step
  */
 
 @Slf4j
@@ -25,10 +24,10 @@ public class LoginController extends BaseController {
     private final LoginService loginService;
 
     /**
-     * user/login
+     * /login -> used to login to the api
      *
      * @param form information from the FE side
-     * @return RestResponse with status SUCCESS or ERROR and with body the data
+     * @return RestResponse with status SUCCESS with body the data or ERROR
      */
     @PostMapping(value = {"/login"})
     public RestResponse<LoginResponse> login(@RequestBody @Valid LoginCredentialsForm form) {

@@ -1,5 +1,6 @@
 package com.financialhouse.service;
 
+import com.financialhouse.dto.form.request.TransactionRequest;
 import com.financialhouse.dto.form.request.TransactionsQueryForm;
 import com.financialhouse.dto.form.request.TransactionsReportForm;
 import com.financialhouse.dto.form.response.TransactionInfo;
@@ -31,10 +32,6 @@ public class TransactionService {
     @Value("${transaction.report.url}")
     private String transactionReportUrl;
 
-    /**
-     * @param form
-     * @return
-     */
     public Optional<TransactionReportResponse> transactionReport(final TransactionsReportForm form) {
         return Optional.of(httpUtils.post(transactionReportUrl, form, TransactionReportResponse.class));
     }
@@ -52,6 +49,7 @@ public class TransactionService {
      * @return
      */
     public Optional<TransactionInfo> transactionInfo(final String transactionId) {
-        return Optional.of(httpUtils.get(transactionGetInfoUrl, transactionId, TransactionInfo.class));
+        return Optional.of(httpUtils.post(transactionGetInfoUrl,
+                new TransactionRequest(transactionId), TransactionInfo.class));
     }
 }
