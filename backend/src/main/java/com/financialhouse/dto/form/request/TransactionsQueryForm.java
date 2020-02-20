@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.financialhouse.dto.enums.Operations;
 import com.financialhouse.dto.enums.PaymentMethods;
 import com.financialhouse.dto.enums.Status;
+import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -51,65 +51,25 @@ import java.util.Date;
  */
 
 @Data
+@Builder
 public class TransactionsQueryForm {
 
-    /**
-     * Start Date
-     */
     @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fromDate;
 
-    /**
-     * Finish Date
-     */
     @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private String toDate;
+    private Date toDate;
 
-    /**
-     * The API request status.
-     */
     private Status status;
-
-    /**
-     * Request operation
-     */
     private Operations operation;
-
-    /**
-     * The merchant identifier.
-     */
     private Integer merchantId;
-
-    /**
-     * The acquirer identifier.
-     */
     private Integer acquirerId;
-
-    /**
-     * The payment method
-     */
     private PaymentMethods paymentMethod;
-
-    /**
-     * Error Code
-     */
     private String errorCode;
-
-    /**
-     * Search by special field
-     */
     private String filterField;
-
-    /**
-     * Value of field.
-     */
     private String filterValue;
-
-    /**
-     * Number of page
-     */
     private Integer page;
 
 }

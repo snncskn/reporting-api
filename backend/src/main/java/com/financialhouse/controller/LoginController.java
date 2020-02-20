@@ -2,11 +2,14 @@ package com.financialhouse.controller;
 
 import com.financialhouse.dto.RestResponse;
 import com.financialhouse.dto.form.request.LoginCredentialsForm;
-import com.financialhouse.dto.form.response.LoginResponse;
 import com.financialhouse.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
@@ -30,7 +33,7 @@ public class LoginController extends BaseController {
      * @return RestResponse with status SUCCESS with body the data or ERROR
      */
     @PostMapping(value = {"/login"})
-    public RestResponse<LoginResponse> login(@RequestBody @Valid LoginCredentialsForm form) {
+    public RestResponse login(@RequestBody @Valid final LoginCredentialsForm form) {
         log.info("api/login called with email {} - password {}", form.getEmail(), form.getPassword());
         return loginService.login(form).map(this::approved).orElseGet(this::declined);
     }

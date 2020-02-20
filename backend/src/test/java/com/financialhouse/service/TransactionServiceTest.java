@@ -1,9 +1,11 @@
 package com.financialhouse.service;
 
 import com.financialhouse.dto.form.request.LoginCredentialsForm;
+import com.financialhouse.dto.form.request.TransactionsQueryForm;
 import com.financialhouse.dto.form.request.TransactionsReportForm;
 import com.financialhouse.dto.form.response.TransactionInfo;
 import com.financialhouse.dto.form.response.TransactionReportResponse;
+import com.financialhouse.dto.form.response.TransactionsQueryResponse;
 import com.financialhouse.security.filter.AuthorizationToken;
 import org.junit.Before;
 import org.junit.Test;
@@ -42,7 +44,7 @@ public class TransactionServiceTest {
     }
 
     @Test
-    public void getTransactionInfo_WithTransactionId() {
+    public void getTransactionInfoWithTransactionId() {
         Optional<TransactionInfo> info = transactionService.transactionInfo("1011028-1539357144-1293");
         assertThat(info.get());
     }
@@ -55,6 +57,16 @@ public class TransactionServiceTest {
                 .build();
         Optional<TransactionReportResponse> optional = transactionService.transactionReport(reportForm);
         assertEquals("APPROVED", optional.get().getStatus());
+    }
+
+    @Test
+    public void getTransactionQueryTest() throws Exception {
+        TransactionsQueryForm queryForm = TransactionsQueryForm.builder()
+                .fromDate(new SimpleDateFormat("yyyy-MM-dd").parse("2015-01-01"))
+                .toDate(new SimpleDateFormat("yyyy-MM-dd").parse("2020-01-01"))
+                .build();
+        Optional<TransactionsQueryResponse> optional = transactionService.transactionQuery(queryForm);
+        assertThat(optional.get().getTransactionInfos());
     }
 
 }

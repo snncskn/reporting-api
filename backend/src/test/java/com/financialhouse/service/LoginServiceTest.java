@@ -6,17 +6,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.assertNotNull;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -25,23 +20,15 @@ public class LoginServiceTest {
     @Autowired
     private LoginService loginService;
 
-    @MockBean
-    private RestTemplate template;
+    private final String email = "demo@financialhouse.io";
+    private final String password = "cjaiU8CV";
 
     @Test
-    public void whenLoginRequest_LoggedIn() {
-
-        ResponseEntity<LoginResponse> responseEntity = new ResponseEntity(
-                new LoginResponse("eyJ0eXAiOiJKV1QiLCJhb", "APPROVED", "qqq@qqq.com"),
-                HttpStatus.OK);
-
-        when(template.postForEntity(any(String.class), new LoginCredentialsForm(any(), any()), LoginResponse.class)).
-                thenReturn(responseEntity);
-
-        Optional<LoginResponse> response =
-                loginService.login(LoginCredentialsForm.builder().email("").password("").build());
-        assertThat(response).isNotNull().matches(resp -> resp.get().getStatus().equals("APPROVED"));
+    public void getLoginRequestLoggedInAndShouldReturnToken() {
+        LoginCredentialsForm form = LoginCredentialsForm.builder().email(email).password(password).build();
+        Optional<LoginResponse> response = loginService.login(form);
+        assertThat(response).isNotNull().matches(x -> x.get().getStatus().equals("APPROVED"));
+        assertNotNull("Authorization Token ", response.get().getToken());
     }
-
 
 }

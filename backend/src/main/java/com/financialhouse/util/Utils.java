@@ -1,7 +1,6 @@
 package com.financialhouse.util;
 
 import javax.validation.constraints.NotNull;
-import java.util.Optional;
 
 
 /**
@@ -16,10 +15,6 @@ public class Utils {
      * @return
      */
     public static <T> boolean isEmpty(@NotNull final T value) {
-        if (value == null) {
-            return true;
-        } else {
-            return false;
-        }
+        return value == null;
     }
 }

@@ -1,10 +1,8 @@
 package com.financialhouse.dto.form.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
@@ -21,7 +19,6 @@ import java.util.Date;
 
 @Data
 @Builder
-@AllArgsConstructor
 public class TransactionsReportForm {
 
     @JsonFormat(pattern = "yyyy-MM-dd")

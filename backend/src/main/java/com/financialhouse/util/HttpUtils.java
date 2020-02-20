@@ -23,6 +23,8 @@ public class HttpUtils {
     @Value("${restService.timeout}")
     private Integer defTimeout;
 
+    private final Integer time = 1000;
+
     private HttpHeaders addAuthorization() {
         HttpHeaders headers = new HttpHeaders();
         headers.set(AUTHORIZATION, SecurityContextHolder.getContext().getAuthentication().getDetails().toString());
@@ -51,8 +53,8 @@ public class HttpUtils {
         restTemplate.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
         HttpComponentsClientHttpRequestFactory rf =
                 (HttpComponentsClientHttpRequestFactory) restTemplate.getRequestFactory();
-        rf.setReadTimeout(defTimeout * 1000);
-        rf.setConnectTimeout(defTimeout * 1000);
+        rf.setReadTimeout(defTimeout * time);
+        rf.setConnectTimeout(defTimeout * time);
         return restTemplate.exchange(url, HttpMethod.POST, httpEntity, responseType).getBody();
     }
 
@@ -70,8 +72,8 @@ public class HttpUtils {
         restTemplate.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
         HttpComponentsClientHttpRequestFactory rf =
                 (HttpComponentsClientHttpRequestFactory) restTemplate.getRequestFactory();
-        rf.setReadTimeout(defTimeout * 1000);
-        rf.setConnectTimeout(defTimeout * 1000);
+        rf.setReadTimeout(defTimeout * time);
+        rf.setConnectTimeout(defTimeout * time);
         HttpEntity<Object> httpEntity = new HttpEntity<>(request, addAuthorization());
         return restTemplate.exchange(url, HttpMethod.GET, httpEntity, responseType).getBody();
     }
