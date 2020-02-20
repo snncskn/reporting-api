@@ -4,7 +4,6 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 
 import { User } from "@/_models";
 import { UserService, AuthenticationService } from "@/_services";
-import { DatePipe } from '@angular/common';
 
 @Component({ templateUrl: "home.component.html" })
 export class HomeComponent implements OnInit {
