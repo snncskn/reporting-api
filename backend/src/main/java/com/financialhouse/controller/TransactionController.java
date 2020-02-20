@@ -6,6 +6,7 @@ import com.financialhouse.dto.form.request.TransactionsReportForm;
 import com.financialhouse.service.TransactionService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +22,7 @@ import javax.validation.constraints.NotNull;
  */
 
 @Slf4j
+@CrossOrigin
 @RestController
 @RequestMapping("/api/transaction")
 @RequiredArgsConstructor

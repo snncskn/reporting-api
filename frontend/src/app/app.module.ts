@@ -10,13 +10,20 @@ import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
 import { AlertComponent } from './_components';
+import { MatTableModule } from '@angular/material/table';
+
+
 
 @NgModule({
     imports: [
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
-        appRoutingModule
+        appRoutingModule,
+        MatTableModule
+    ],
+    exports: [
+        MatTableModule
     ],
     declarations: [
         AppComponent,
