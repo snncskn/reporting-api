@@ -53,9 +53,9 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:9090/api/v3/merchant/user/login",
+			"name": "http://localhost:9090/api/login",
 			"request": {
-				"url": "http://localhost:9090/api/v3/merchant/user/login",
+				"url": "http://localhost:9090/api/login",
 				"method": "POST",
 				"header": [
 					{
@@ -123,9 +123,9 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:9090/api/v3/transactions/report",
+			"name": "http://localhost:9090/api/transaction/report",
 			"request": {
-				"url": "http://localhost:9090/api/v3/transactions/report",
+				"url": "http://localhost:9090/api/transaction/report",
 				"method": "POST",
 				"header": [
 					{
@@ -168,9 +168,9 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:9090/api/v3/transaction/list",
+			"name": "http://localhost:9090/api/transaction/list",
 			"request": {
-				"url": "http://localhost:9090/api/v3/transaction/list",
+				"url": "http://localhost:9090/api/transaction/list",
 				"method": "POST",
 				"header": [
 					{
