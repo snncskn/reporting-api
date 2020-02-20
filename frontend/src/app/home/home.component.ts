@@ -28,8 +28,6 @@ export class HomeComponent implements OnInit {
     this.currentUser = this.authenticationService.currentUserValue;
     const firtDate = new Date();
     firtDate.setDate(firtDate.getDate() - 30);
-    console.log('homeeeeee.');
-
 
     this.form = formBuilder.group({
       requestStartTime: ['00:00'],

@@ -28,10 +28,8 @@ export class LoginComponent implements OnInit {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
         // redirect to home if already logged in
-        console.log('....');
         if (this.authenticationService.currentUserValue) {
-            console.log('.......');
-            this.router.navigate(['home']);
+            this.router.navigate(['/']);
         }
     }
 
@@ -67,7 +65,6 @@ export class LoginComponent implements OnInit {
                     localStorage.setItem('currentUser', JSON.stringify(data.data));
                     this.currentUserSubject.next(data.data);
                     this.loading = false;
-                    //window.location.reload();
                     this.router.navigate([this.returnUrl]);
                 },
                 error => {
